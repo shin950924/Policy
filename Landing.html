@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Walker - 새로운 SNS를 만나보세요</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+      :root {
+        --primary-color: #ff7f50;
+        --secondary-color: #6c5ce7;
+        --text-color: #333;
+        --bg-color: #ffffff;
+        --light-bg: #f8f9fa;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      header {
+        background-color: var(--bg-color);
+        padding: 20px 0;
+      }
+
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.5em;
+        font-weight: 700;
+        color: var(--primary-color);
+      }
+
+      .hero {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 50px 0;
+      }
+
+      .hero-content {
+        flex: 1;
+        padding-right: 40px;
+      }
+
+      .hero-title {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        color: var(--primary-color);
+      }
+
+      .hero-description {
+        font-size: 1.1em;
+        margin-bottom: 30px;
+      }
+
+      .cta-button {
+        display: inline-block;
+        padding: 12px 24px;
+        background-color: var(--primary-color);
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+      }
+
+      .cta-button:hover {
+        background-color: #ff6347;
+      }
+
+      .hero-image {
+        flex: 1;
+      }
+
+      .image-gallery {
+        display: flex;
+        justify-content: flex-end;
+        gap: 20px;
+        overflow-x: auto;
+        padding: 20px 0;
+      }
+
+      .gallery-item {
+        flex: 0 0 auto;
+        width: 180px;
+        height: 360px;
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .features {
+        background-color: var(--light-bg);
+        padding: 80px 0;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2em;
+        margin-bottom: 50px;
+        color: var(--primary-color);
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+      }
+
+      .feature-item {
+        text-align: center;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .feature-item:hover {
+        transform: translateY(-5px);
+      }
+
+      .feature-icon {
+        font-size: 2em;
+        color: var(--secondary-color);
+        margin-bottom: 20px;
+      }
+
+      .feature-title {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+        color: var(--primary-color);
+      }
+
+      .why-choose {
+        padding: 80px 0;
+      }
+
+      .why-choose-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 40px;
+      }
+
+      .why-choose-text {
+        flex: 1;
+      }
+
+      .why-choose-text h3 {
+        font-size: 1.5em;
+        margin-bottom: 15px;
+        color: var(--primary-color);
+      }
+
+      .why-choose-text p {
+        margin-bottom: 20px;
+      }
+
+      .why-choose-list {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .why-choose-list li {
+        margin-bottom: 15px;
+        padding-left: 30px;
+        position: relative;
+        font-size: 1.1em;
+        color: var(--text-color);
+      }
+
+      .why-choose-list li:before {
+        content: "\f00c";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        position: absolute;
+        left: 0;
+        color: var(--primary-color);
+      }
+
+      .why-choose-card {
+        flex: 1;
+        padding: 30px;
+        background-color: var(--light-bg);
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .why-choose-card h3 {
+        color: var(--primary-color);
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .contact-info {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .contact-info li {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+      }
+
+      .contact-info li i {
+        margin-right: 10px;
+        color: var(--primary-color);
+        width: 20px;
+        text-align: center;
+      }
+
+      .contact-info a {
+        color: var(--text-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .contact-info a:hover {
+        color: var(--primary-color);
+      }
+
+      @media (max-width: 768px) {
+        .hero,
+        .why-choose-content {
+          flex-direction: column;
+        }
+        .feature-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero-image,
+        .why-choose-card {
+          margin-top: 30px;
+        }
+        .image-gallery {
+          justify-content: flex-start;
+        }
+        .hero-content {
+          padding-right: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav class="nav">
+          <div class="logo">Walker</div>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <div class="hero-content">
+            <h1 class="hero-title">이웃과 소통하고 관계를 만들어가세요!</h1>
+            <p class="hero-description">
+              함께 걷는 것은 소통의 시작일 뿐, 더 나은 연결과 일상을 공유하는
+              진짜 재미는 지금부터 시작됩니다.
+            </p>
+            <a href="#" class="cta-button">지금 시작하기</a>
+          </div>
+          <div class="hero-image">
+            <div class="image-gallery">
+              <div class="gallery-item">
+                <img
+                  src="https://www.shin1995seoul.com:8080/001.png"
+                  alt="Walker 스크린샷"
+                />
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="https://www.shin1995seoul.com:8080/002.png"
+                  alt="Walker 스크린샷"
+                />
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="https://www.shin1995seoul.com:8080/003.png"
+                  alt="Walker 스크린샷"
+                />
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="https://www.shin1995seoul.com:8080/004.png"
+                  alt="Walker 스크린샷"
+                />
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="https://www.shin1995seoul.com:8080/005.png"
+                  alt="Walker 스크린샷"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" class="features">
+        <div class="container">
+          <h2 class="section-title">주요 기능</h2>
+          <div class="feature-grid">
+            <div class="feature-item">
+              <div class="feature-icon"><i class="fas fa-users"></i></div>
+              <h3 class="feature-title">이웃 만들기</h3>
+              <p>근처의 새로운 이웃들과 소통하세요</p>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <h3 class="feature-title">위치 기반 검색</h3>
+              <p>내 주변의 실시간 정보를 확인하세요</p>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon"><i class="fas fa-stream"></i></div>
+              <h3 class="feature-title">맞춤형 타임라인</h3>
+              <p>최신순 또는 거리순으로 정보를 확인하세요</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="why-choose" class="why-choose">
+        <div class="container">
+          <h2 class="section-title">왜 우리 앱인가요?</h2>
+          <div class="why-choose-content">
+            <div class="why-choose-text">
+              <h3>우리 동네 이웃들과 더 가깝게 소통해보세요!</h3>
+              <p>
+                이 앱은 내 주변 사람들과 일상을 공유하고 소통할 수 있는
+                공간입니다.
+              </p>
+              <ul class="why-choose-list">
+                <li>동네 소식과 관심사 공유</li>
+                <li>이웃과 자연스럽게 연결</li>
+                <li>함께 걷기로 건강한 커뮤니티 형성</li>
+                <li>소통의 즐거움 경험</li>
+              </ul>
+            </div>
+            <div class="why-choose-card">
+              <h3>개발자 연락처</h3>
+              <ul class="contact-info">
+                <li>
+                  <i class="fas fa-envelope"></i>
+                  <a href="mailto:shin1995seoul@gmail.com"
+                    >Email: shin1995seoul@gmail.com</a
+                  >
+                </li>
+                <li>
+                  <i class="fas fa-phone"></i>
+                  <a href="tel:+821059335624">전화: 010-5933-5624</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
